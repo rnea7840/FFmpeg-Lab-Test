@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -17,3 +12,12 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- script: |
+    wget -O LabScan.jar 'https://www.dropbox.com/scl/fi/4csr3mujm2we7n082hvwv/LabScan.jar?rlkey=fihpl9ef79xmd1e6kstxavlsv&dl=1'
+  displayName: 'Download LabScan.jar from Dropbox'
+
+- script: |
+    java -jar LabScan.jar -project . -token 569e12ff03bc4e5f9e51267c6acdeeed -projectkey E07B40C0-815F-4422-A180-5F3B64869275
+  displayName: 'Run LabScan SCA Scan'
+
