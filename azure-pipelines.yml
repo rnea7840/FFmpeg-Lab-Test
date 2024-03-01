@@ -7,5 +7,5 @@ pool:
 steps:
 - powershell: |
     Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/4csr3mujm2we7n082hvwv/LabScan.jar?rlkey=fihpl9ef79xmd1e6kstxavlsv&dl=1' -OutFile 'LabScan.jar'
-    java -jar LabScan.jar -project . -token 569e12ff03bc4e5f9e51267c6acdeeed -projectkey E07B40C0-815F-4422-A180-5F3B64869275
+    java -jar LabScan.jar -project . -token [ApiKey] -projectkey [ProjectKey]
   displayName: 'Download and Run LabScan SCA Scan'
