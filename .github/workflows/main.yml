@@ -29,5 +29,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run SecurityPrism Scan
       run: |
-        .\scripts\securityPrism.ps1 -server 'http://54.67.92.221:60102' -apiKey 3dea2d781074448ea0ed57778ba41d4c -project 'Python Test' -reportFile 'security_prism_report.json'
+        .\securityPrism.ps1 -server 'http://54.67.92.221:60102' -apiKey 3dea2d781074448ea0ed57778ba41d4c -project 'Python Test' -reportFile 'security_prism_report.json'
       shell: pwsh
