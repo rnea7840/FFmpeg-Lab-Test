@@ -1,4 +1,4 @@
-name: LabScan CI
+name: LabScan and SecurityPrism CI
 
 on:
   push:
@@ -20,3 +20,14 @@ jobs:
       run: |
         wget -O LabScan.jar 'https://www.dropbox.com/scl/fi/4csr3mujm2we7n082hvwv/LabScan.jar?rlkey=fihpl9ef79xmd1e6kstxavlsv&dl=1'
         java -jar LabScan.jar -project . -token 569e12ff03bc4e5f9e51267c6acdeeed -projectkey E07B40C0-815F-4422-A180-5F3B64869275
+
+  securityprism:
+    runs-on: windows-latest
+    needs: labscan
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run SecurityPrism Scan
+      run: |
+        .\scripts\securityPrism.ps1 -server 'http://54.67.92.221:60102' -apiKey 3dea2d781074448ea0ed57778ba41d4c -project 'Python Test' -reportFile 'security_prism_report.json'
+      shell: pwsh
