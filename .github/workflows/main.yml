@@ -29,5 +29,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run SecurityPrism Scan
       run: |
-        ./SecurityPrism.ps1 'http://54.67.92.221:60102' 'APPG 080062e7e48b4190b26ebeba168e3d52' 'Python Test' 'master' 'High'
+        ./SecurityPrism.ps1 'http://54.67.92.221:60102' 'APPG 080062e7e48b4190b26ebeba168e3d52' 'Python Test' 'master' 
       shell: pwsh
