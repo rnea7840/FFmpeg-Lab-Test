@@ -11,11 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up JDK 8
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v3
       with:
         java-version: 8
+        distribution: 'temurin'  # Specify a distribution (e.g., Temurin, Zulu, etc.)
     - name: Download and Run LabScan SCA Scan
       run: |
         wget -O LabScan.jar 'https://www.dropbox.com/scl/fi/4csr3mujm2we7n082hvwv/LabScan.jar?rlkey=fihpl9ef79xmd1e6kstxavlsv&dl=1'
@@ -26,7 +27,7 @@ jobs:
     needs: labscan
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Run SecurityPrism Scan
       run: |
         ./SecurityPrism.ps1 'http://54.67.92.221:60102' 'APPG 080062e7e48b4190b26ebeba168e3d52' 'Python Test' 'master' 
