@@ -32,7 +32,7 @@ jobs:
       env:
         LABSCAN_JAR_PATH: LabScan.jar
         PROJECT_PATH: .
-        PROJECT_KEY: E07B40C0-815F-4422-A180-5F3B64869275
+        PROJECT_KEY: F42C4CFB-1198-409C-8D8C-CB6BF490BA20
         SEVERITY_LEVELS: High,Critical
         LABRADOR_URL: https://labrador.labradorlabs.ai
         LABRADOR_TOKEN: 569e12ff03bc4e5f9e51267c6acdeeed
