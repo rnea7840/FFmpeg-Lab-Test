@@ -12,15 +12,32 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up JDK 8
       uses: actions/setup-java@v4
       with:
         java-version: 8
-        distribution: 'temurin'  # Specify a distribution (e.g., Temurin, Zulu, etc.)
-    - name: Download and Run LabScan SCA Scan
+        distribution: 'temurin'
+
+    - name: Download LabScan JAR
       run: |
         wget -O LabScan.jar 'https://www.dropbox.com/scl/fi/4csr3mujm2we7n082hvwv/LabScan.jar?rlkey=fihpl9ef79xmd1e6kstxavlsv&dl=1'
-        java -jar LabScan.jar -project . -token 569e12ff03bc4e5f9e51267c6acdeeed -projectkey E07B40C0-815F-4422-A180-5F3B64869275
+
+    - name: Download CheckPredefinedVulnerabilities Script
+      run: |
+        wget -O CheckPredefinedVulnerabilities.sh 'https://www.dropbox.com/scl/fi/77yhiu27azt0qqq5jkudh/CheckPredefinedVulnerabilities.sh?rlkey=p1bg60cg7ba6rqa9h8sie366z&dl=1'
+        chmod +x CheckPredefinedVulnerabilities.sh
+
+    - name: Run LabScan SCA Scan and Check for Vulnerabilities
+      env:
+        LABSCAN_JAR_PATH: LabScan.jar
+        PROJECT_PATH: .
+        PROJECT_KEY: E07B40C0-815F-4422-A180-5F3B64869275
+        SEVERITY_LEVELS: High,Critical
+        LABRADOR_URL: https://labrador.labradorlabs.ai
+        LABRADOR_TOKEN: 569e12ff03bc4e5f9e51267c6acdeeed
+      run: |
+        ./CheckPredefinedVulnerabilities.sh "$LABSCAN_JAR_PATH" "$PROJECT_PATH" "$PROJECT_KEY" "$SEVERITY_LEVELS" "$LABRADOR_URL" "$LABRADOR_TOKEN"
 
   securityprism:
     runs-on: windows-latest
