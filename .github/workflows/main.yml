@@ -26,6 +26,7 @@ jobs:
     - name: Download CheckPredefinedVulnerabilities Script
       run: |
         wget -O CheckPredefinedVulnerabilities.sh 'https://www.dropbox.com/scl/fi/77yhiu27azt0qqq5jkudh/CheckPredefinedVulnerabilities.sh?rlkey=p1bg60cg7ba6rqa9h8sie366z&dl=1'
+        sed -i 's/\r$//' CheckPredefinedVulnerabilities.sh  # Convert line endings to Unix-style
         chmod +x CheckPredefinedVulnerabilities.sh
 
     - name: Run LabScan SCA Scan and Check for Vulnerabilities
