@@ -25,7 +25,7 @@ jobs:
 
     - name: Download CheckPredefinedVulnerabilities Script
       run: |
-        wget -O CheckPredefinedVulnerabilities.sh 'https://www.dropbox.com/scl/fi/i1jsojpygkbzwt7vbqk06/CheckPredefinedVulnerabilities.sh?rlkey=3xkvcc0kjpoye7kxj6rvs11pv&dl=1'
+        wget -O CheckPredefinedVulnerabilities.sh 'https://www.dropbox.com/scl/fi/qgfe7lrps9g4ex4lowky3/CheckPredefinedVulnerabilities.sh?rlkey=o1ta4381ttr7df8v4k8gz6cv2&dl=1'
         sed -i 's/\r$//' CheckPredefinedVulnerabilities.sh  # Convert line endings to Unix-style
         chmod +x CheckPredefinedVulnerabilities.sh
 
