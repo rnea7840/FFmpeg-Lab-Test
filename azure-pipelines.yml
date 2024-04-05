@@ -5,7 +5,22 @@ pool:
   name: Default
 
 steps:
+- checkout: self
+
 - powershell: |
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/4csr3mujm2we7n082hvwv/LabScan.jar?rlkey=fihpl9ef79xmd1e6kstxavlsv&dl=1' -OutFile 'LabScan.jar'
-    java -jar LabScan.jar -project . -token 569e12ff03bc4e5f9e51267c6acdeeed -projectkey E07B40C0-815F-4422-A180-5F3B64869275
-  displayName: 'Download and Run LabScan SCA Scan'
+    Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/7yqu8a44y2g4cadtpb3s6/CheckPredefinedVulnerabilities.sh?rlkey=abf70uvdk28d396k3f6t7uaqi&dl=1' -OutFile 'CheckPredefinedVulnerabilities.sh'
+    Get-Content -Path 'CheckPredefinedVulnerabilities.sh' | Set-Content -Path 'CheckPredefinedVulnerabilities.sh' -Encoding utf8
+  displayName: 'Download LabScan JAR and CheckPredefinedVulnerabilities Script'
+
+- powershell: |
+    ./CheckPredefinedVulnerabilities.sh "LabScan.jar" "." "F42C4CFB-1198-409C-8D8C-CB6BF490BA20" "High,Critical" "https://labrador.labradorlabs.ai" "569e12ff03bc4e5f9e51267c6acdeeed"
+  displayName: 'Run LabScan SCA Scan and Check for Vulnerabilities'
+  env:
+    LABSCAN_JAR_PATH: LabScan.jar
+    PROJECT_PATH: .
+    PROJECT_KEY: F42C4CFB-1198-409C-8D8C-CB6BF490BA20
+    SEVERITY_LEVELS: High,Critical
+    LABRADOR_URL: https://labrador.labradorlabs.ai
+    LABRADOR_TOKEN: 569e12ff03bc4e5f9e51267c6acdeeed
