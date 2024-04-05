@@ -11,6 +11,7 @@ steps:
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/4csr3mujm2we7n082hvwv/LabScan.jar?rlkey=fihpl9ef79xmd1e6kstxavlsv&dl=1' -OutFile 'LabScan.jar'
     Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/7yqu8a44y2g4cadtpb3s6/CheckPredefinedVulnerabilities.sh?rlkey=abf70uvdk28d396k3f6t7uaqi&dl=1' -OutFile 'CheckPredefinedVulnerabilities.sh'
+    Start-Sleep -Seconds 5
     Get-Content -Path 'CheckPredefinedVulnerabilities.sh' | Set-Content -Path 'CheckPredefinedVulnerabilities.sh' -Encoding utf8
   displayName: 'Download LabScan JAR and CheckPredefinedVulnerabilities Script'
 
