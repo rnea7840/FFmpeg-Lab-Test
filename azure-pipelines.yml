@@ -15,5 +15,5 @@ steps:
   displayName: 'Download LabScan JAR and CheckPredefinedVulnerabilities Script'
 
 - powershell: |
-    ./CheckPredefinedVulnerabilities.ps1 -labScanJarPath "LabScan.jar" -projectPath "." -projectKey "F42C4CFB-1198-409C-8D8C-CB6BF490BA20" -severityLevels "High,Critical" -labradorUrl "https://labrador.labradorlabs.ai" -labradorToken "569e12ff03bc4e5f9e51267c6acdeeed"
+    ./CheckPredefinedVulnerabilities.ps1 -labScanJarPath "LabScan.jar" -projectPath "." -projectKey "F42C4CFB-1198-409C-8D8C-CB6BF490BA20" -severityLevels "" -labradorUrl "https://labrador.labradorlabs.ai" -labradorToken "569e12ff03bc4e5f9e51267c6acdeeed"
   displayName: 'Run LabScan SCA Scan and Check for Vulnerabilities'
