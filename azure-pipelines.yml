@@ -8,5 +8,12 @@ steps:
 - checkout: self
 
 - powershell: |
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/4csr3mujm2we7n082hvwv/LabScan.jar?rlkey=fihpl9ef79xmd1e6kstxavlsv&dl=1' -OutFile 'LabScan.jar'
+    Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/m90pn5jlblhrc7ayccd9i/CheckPredefinedVulnerabilities.ps1?rlkey=o6yjqn6ppc5544ekdqwe22suk&dl=1' -OutFile 'CheckPredefinedVulnerabilities.ps1'
+    Start-Sleep -Seconds 5
+  displayName: 'Download LabScan JAR and CheckPredefinedVulnerabilities Script'
+
+- powershell: |
     ./CheckPredefinedVulnerabilities.ps1 -labScanJarPath "LabScan.jar" -projectPath "." -projectKey "F42C4CFB-1198-409C-8D8C-CB6BF490BA20" -severityLevels "High,Critical" -labradorUrl "https://labrador.labradorlabs.ai" -labradorToken "569e12ff03bc4e5f9e51267c6acdeeed"
   displayName: 'Run LabScan SCA Scan and Check for Vulnerabilities'
