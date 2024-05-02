@@ -13,7 +13,11 @@ steps:
     Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/m90pn5jlblhrc7ayccd9i/CheckPredefinedVulnerabilities.ps1?rlkey=o6yjqn6ppc5544ekdqwe22suk&dl=1' -OutFile 'CheckPredefinedVulnerabilities.ps1'
     Start-Sleep -Seconds 5
   displayName: 'Download LabScan JAR and CheckPredefinedVulnerabilities Script'
-
+- powershell: |
+    Invoke-WebRequest -Uri 'https://www.dropbox.com/scl/fi/cbu9csu5hyxmqicxasqfa/SecurityPrism.ps1?rlkey=4cbsiuuxuyffow2xbb73h5afz&dl=1' -OutFile 'SecurityPrism.ps1'
+    ./SecurityPrism.ps1 'http://54.67.92.221:60102' 'APPG 080062e7e48b4190b26ebeba168e3d52' 'Python Test' 'master'
+  displayName: 'Run SecurityPrism Scan'
 - powershell: |
     ./CheckPredefinedVulnerabilities.ps1 -labScanJarPath "LabScan.jar" -projectPath "." -projectKey "F42C4CFB-1198-409C-8D8C-CB6BF490BA20" -severityLevels "" -labradorUrl "https://labrador.labradorlabs.ai" -labradorToken "569e12ff03bc4e5f9e51267c6acdeeed"
   displayName: 'Run LabScan SCA Scan and Check for Vulnerabilities'
+
